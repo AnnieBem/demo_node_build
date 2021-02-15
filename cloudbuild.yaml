@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
-  - clone:
+  - clone
   - git@github.com:AnnieBem/demo_node_build
 
 - name: 'gcr.io/cloud-builders/docker'
