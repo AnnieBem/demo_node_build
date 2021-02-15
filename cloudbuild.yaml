@@ -20,7 +20,7 @@ substitutions:
     _GKE_CLUSTER: my-first-cluster-1
 
     _DEPLOYMENTNAME: hello-world-service
-    _CONTAINERNAME: hello-world-service
+    _CONTAINERNAME: demo-node-build-1
     _REPO_NAME: github_anniebem_demo_node_build
 
 
