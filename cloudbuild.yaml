@@ -19,7 +19,7 @@ substitutions:
     _ZONE: us-central1-a
     _GKE_CLUSTER: my-first-cluster-1
 
-    _DEPLOYMENT: hello-world-service
+    _DEPLOYMENTNAME: hello-world-service
     _CONTAINERNAME: hello-world-service
     _REPO_NAME: github_anniebem_demo_node_build
 
