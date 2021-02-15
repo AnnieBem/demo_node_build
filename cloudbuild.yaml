@@ -1,4 +1,7 @@
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone','https://source.developers.google.com/p/${_PROJECT}/r/${_REPO_NAME}']
+
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/${_PROJECT}/${_CONTAINERNAME}:${_VERSION}','.']
 
@@ -16,8 +19,10 @@ substitutions:
     _ZONE: us-central1-a
     _GKE_CLUSTER: my-first-cluster-1
 
-    _DEPLOYMENT: nodedeploy
-    _CONTAINERNAME: nodedeploy
+    _DEPLOYMENT: hello-world-service
+    _CONTAINERNAME: hello-world-service
+    _REPO_NAME: demo_node_build
+
 
     _VERSION: v1.0
 options:
