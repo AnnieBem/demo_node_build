@@ -12,7 +12,7 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
 
 substitutions:
-    _PROJECT: myfirstproject
+    _PROJECT: myfirstproject-304920
     _ZONE: us-central1-a
     _GKE_CLUSTER: my-first-cluster-1
 
