@@ -21,7 +21,7 @@ substitutions:
 
     _DEPLOYMENT: hello-world-service
     _CONTAINERNAME: hello-world-service
-    _REPO_NAME: demo_node_build
+    _REPO_NAME: github_anniebem_demo_node_build
 
 
     _VERSION: v1.0
