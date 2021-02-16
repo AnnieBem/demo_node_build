@@ -27,15 +27,27 @@
 
 # Access the id_github file from Secret Manager, and setup SSH
 steps:
+
+#Access git pvt key from Secret Manager and put it into local .ssh folder  
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud secrets versions access latest --secret=Annie-git > /root/.ssh/id_rsa']
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+#Set up git with key and known_hosts
 - name: 'gcr.io/cloud-builders/git'
-  secretEnv: ['SSH_KEY']
   entrypoint: 'bash'
   args:
   - -c
   - |
-    echo "$$SSH_KEY" >> /root/.ssh/id_rsa
-    chmod 400 /root/.ssh/id_rsa
-    ssh-keyscan -t rsa github.com > known_hosts
+    chmod 600 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
   volumes:
   - name: 'ssh'
     path: /root/.ssh
@@ -75,11 +87,6 @@ substitutions:
     _VERSION: v1.0
 options:
     substitution_option: 'ALLOW_LOOSE'
-
-availableSecrets:
-  secretManager:
-  - versionName: projects/myfirstproject-304920/secrets/Annie-git/versions/latest
-    env: 'SSH_KEY'
 
 
 
