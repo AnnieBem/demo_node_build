@@ -31,7 +31,7 @@ steps:
 #Access git pvt key from Secret Manager and put it into local .ssh folder  
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['-c', 'gcloud secrets versions access latest --secret=Annie-git > /root/.ssh/id_rsa']
+  args: ['-c', 'gcloud secrets versions access latest --secret=annie-git-pvt > /root/.ssh/id_rsa']
   volumes:
   - name: 'ssh'
     path: /root/.ssh
