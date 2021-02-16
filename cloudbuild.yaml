@@ -72,9 +72,9 @@ substitutions:
 options:
     substitution_option: 'ALLOW_LOOSE'
 
-volumes:
-- name: 'ssh'
-  path: /root/.ssh
+# volumes:
+# - name: 'ssh'
+#   path: /root/.ssh
 availableSecrets:
   secretManager:
   - versionName: projects/myfirstproject-304920/secrets/Annie-git/versions/latest
