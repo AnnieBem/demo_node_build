@@ -1,8 +1,28 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
+  secretEnv: ['SSH_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cp known_hosts_annie_github /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+- name: 'gcr.io/cloud-builders/git'
   args:
   - clone
   - git@github.com:AnnieBem/demo_node_build
+volumes:
+- name: 'ssh'
+  path: /root/.ssh
+availableSecrets:
+  secretManager:
+  - versionName: projects/myfirstproject-304920/secrets/Annie-git/versions/latest
+    env: 'SSH_KEY'
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/${_PROJECT}/${_CONTAINERNAME}:${_VERSION}','.']
