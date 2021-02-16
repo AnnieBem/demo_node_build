@@ -45,13 +45,6 @@ steps:
   args:
   - clone
   - git@github.com:AnnieBem/demo_node_build
-volumes:
-- name: 'ssh'
-  path: /root/.ssh
-availableSecrets:
-  secretManager:
-  - versionName: projects/myfirstproject-304920/secrets/Annie-git/versions/latest
-    env: 'SSH_KEY'
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/${_PROJECT}/${_CONTAINERNAME}:${_VERSION}','.']
@@ -78,3 +71,12 @@ substitutions:
     _VERSION: v1.0
 options:
     substitution_option: 'ALLOW_LOOSE'
+
+volumes:
+- name: 'ssh'
+  path: /root/.ssh
+availableSecrets:
+  secretManager:
+  - versionName: projects/myfirstproject-304920/secrets/Annie-git/versions/latest
+    env: 'SSH_KEY'
+
